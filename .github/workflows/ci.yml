@@ -19,8 +19,8 @@ jobs:
 
       - name: Move source maps
         run: |
-          mv ./dist/*/js/*.map ./source-maps/
-          cp ./dist/*/js/*.js ./source-maps/
+          mv ./dist/*/*.map ./source-maps/
+          cp ./dist/*/*.js ./source-maps/
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
