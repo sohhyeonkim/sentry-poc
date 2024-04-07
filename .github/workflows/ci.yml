@@ -13,10 +13,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-        env: 
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       - run: npm ci
-      - run: npx sentry-cli login --auth-token=$SENTRY_AUTH_TOKEN && npm run build --if-present
+      - run: npx sentry-cli login --auth-token=${{ secrets.SENTRY_AUTH_TOKEN }} && npm run build --if-present
       - run: npm test
 
       - name: Move source maps
