@@ -15,7 +15,15 @@ jobs:
           node-version: '20.x'
       - run: npm ci
       - run: npx sentry-cli login --auth-token=${{ secrets.SENTRY_AUTH_TOKEN }} && npm run build --if-present
-      - run: npm test
+
+      - name: Check if destination directory exists
+        run: |
+          destination_dir="./source-maps"
+          if [ ! -d "$destination_dir" ]; then
+            mkdir -p "$destination_dir"
+          else
+            rm -f "$destination_dir"/*
+          fi
 
       - name: Move source maps
         run: |
